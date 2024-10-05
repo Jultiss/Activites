@@ -13,6 +13,9 @@
         h1 {
             color: #4CAF50;
         }
+        h2 {
+            color: #4CAF50;
+        }
         #goButton {
             padding: 20px;
             font-size: 24px;
@@ -35,7 +38,7 @@
     <h1>Choisir une Activité</h1>
     <p id="semaine"></p>
     <button id="goButton" onclick="choisirActivite()">GO !</button>
-    <p id="resultat">Cliquez sur le bouton pour choisir une activité</p>
+    <h2 id="resultat">Cliquez sur le bouton pour choisir une activité</h2>
     <p id="description"></p>
     <p id="adresse"></p>
     <p id="budget"></p>
@@ -74,7 +77,7 @@
 
             const index = Math.floor(Math.random() * activitesRestantes.length);
             const activiteChoisie = activitesRestantes.splice(index, 1)[0]; // Retire l'activité de la liste après sélection
-            document.getElementById("resultat").innerText = "Activité choisie : " + activiteChoisie.nom;
+            document.getElementById("resultat").innerText = activiteChoisie.nom;
             document.getElementById("description").innerText = "Description : " + activiteChoisie.description;
             document.getElementById("adresse").innerText = "Adresse : " + activiteChoisie.adresse;
             document.getElementById("budget").innerText = "Budget : " + activiteChoisie.budget;
