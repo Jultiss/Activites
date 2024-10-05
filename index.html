@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choisir une Activité</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Choisir une Activité</h1>
+    <button onclick="choisirActivite()">Lancer la roue</button>
+    <p id="resultat">Cliquez sur le bouton pour choisir une activité</p>
+
+    <script>
+        const activites = [
+            "Faire du vélo", "Aller courir dans un parc", "Faire de la randonnée", "Prendre un cours de danse",
+            "Essayer le tennis ou le badminton", "Faire du kayak ou du paddle", "Prendre un cours de yoga en duo",
+            "Faire de l'escalade", "Faire une promenade à cheval", "S'inscrire à un cours d'arts martiaux",
+            "Essayer le roller ou le patin à glace", "Aller à la piscine", "Jouer au golf ou au mini-golf",
+            "Faire du canoë", "Faire une sortie en ski ou snowboard", "Participer à une course d'orientation",
+            "Essayer la randonnée en raquettes", "Faire du kitesurf ou du surf", "Partir pour une journée de plongée"
+        ];
+
+        function choisirActivite() {
+            const index = Math.floor(Math.random() * activites.length);
+            const activiteChoisie = activites[index];
+            document.getElementById("resultat").innerText = "Activité choisie : " + activiteChoisie;
+        }
+    </script>
+</body>
+</html>
