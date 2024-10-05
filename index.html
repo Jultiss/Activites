@@ -13,36 +13,32 @@
         h1 {
             color: #4CAF50;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
+        #goButton {
+            padding: 20px;
+            font-size: 24px;
             cursor: pointer;
             background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            line-height: 60px;
         }
         p {
             font-size: 18px;
             margin-top: 20px;
-        }
-        img {
-            margin-top: 20px;
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
         }
     </style>
 </head>
 <body>
     <h1>Choisir une Activité</h1>
     <p id="semaine"></p>
-    <button onclick="choisirActivite()">Lancer la roue</button>
+    <button id="goButton" onclick="choisirActivite()">GO !</button>
     <p id="resultat">Cliquez sur le bouton pour choisir une activité</p>
     <p id="description"></p>
     <p id="adresse"></p>
     <p id="budget"></p>
-    <img id="image" src="" alt="Illustration de l'activité">
 
     <script>
         // Fonction pour obtenir la semaine en cours de l'année
@@ -57,37 +53,31 @@
         // Afficher la semaine en cours
         document.getElementById('semaine').innerText = "Semaine en cours : " + getCurrentWeek();
 
-        const activites = [
-            {nom: "Faire du vélo", description: "Balade à vélo sur les pistes cyclables locales", adresse: "Parc Naturel de Passeligne", budget: "Gratuit ou 15-30 € pour location de vélo", image: "https://cdn.pixabay.com/photo/2016/11/29/02/51/adventure-1867275_1280.jpg"},
-            {nom: "Aller courir dans un parc", description: "Course matinale dans un parc", adresse: "Parc de la Garenne", budget: "Gratuit", image: "https://cdn.pixabay.com/photo/2017/08/06/09/31/people-2592247_1280.jpg"},
-            {nom: "Faire de la randonnée", description: "Randonnée dans les sentiers nature", adresse: "Lac de Passeligne", budget: "Gratuit ou 10-20 € selon l'équipement", image: "https://cdn.pixabay.com/photo/2018/02/13/08/27/adventure-3140449_1280.jpg"},
-            {nom: "Prendre un cours de danse", description: "Prendre un cours de danse comme la salsa ou le tango", adresse: "Studio de danse à Agen", budget: "10-20 € par personne", image: "https://cdn.pixabay.com/photo/2016/11/22/22/32/girl-1853956_1280.jpg"},
-            {nom: "Essayer le tennis ou le badminton", description: "Partie amicale de tennis ou de badminton", adresse: "Tennis Club d'Agen", budget: "10-30 € selon le club", image: "https://cdn.pixabay.com/photo/2016/02/16/21/07/tennis-1209608_1280.jpg"},
-            {nom: "Faire du kayak ou du paddle", description: "Descente en kayak ou paddle sur une rivière", adresse: "Base de loisirs de Bruch", budget: "10-30 € par personne", image: "https://cdn.pixabay.com/photo/2015/05/08/16/08/kayak-758406_1280.jpg"},
-            {nom: "Prendre un cours de yoga en duo", description: "Séance de yoga en couple", adresse: "Studio de yoga à Agen", budget: "15-25 € par séance", image: "https://cdn.pixabay.com/photo/2017/08/02/23/11/woman-2573216_1280.jpg"},
-            {nom: "Faire de l'escalade", description: "Escalade en salle ou en plein air", adresse: "Salle d'escalade à Agen", budget: "10-20 €", image: "https://cdn.pixabay.com/photo/2016/07/18/23/37/climbing-1526136_1280.jpg"},
-            {nom: "Faire une promenade à cheval", description: "Promenade à cheval dans la campagne", adresse: "Centre équestre d'Agen", budget: "20-40 €", image: "https://cdn.pixabay.com/photo/2017/01/06/16/46/horse-1958047_1280.jpg"},
-            {nom: "S'inscrire à un cours d'arts martiaux", description: "Cours d'initiation aux arts martiaux", adresse: "Académie d'arts martiaux Agen", budget: "10-15 € par cours", image: "https://cdn.pixabay.com/photo/2016/11/19/19/57/adult-1840265_1280.jpg"},
-            {nom: "Essayer le roller ou le patin à glace", description: "Essai du roller ou du patin à glace", adresse: "Patinoire de Marmande", budget: "Gratuit ou 5-10 € pour location", image: "https://cdn.pixabay.com/photo/2014/12/27/15/40/ice-skating-581703_1280.jpg"},
-            {nom: "Aller à la piscine", description: "Après-midi à la piscine", adresse: "Piscine Aqua'Sud", budget: "5-10 €", image: "https://cdn.pixabay.com/photo/2017/06/30/05/36/girl-2456127_1280.jpg"},
-            {nom: "Jouer au golf ou au mini-golf", description: "Partie de mini-golf en plein air", adresse: "Golf d'Agen-Bon Encontre", budget: "20-30 €", image: "https://cdn.pixabay.com/photo/2016/08/14/19/38/golf-1597502_1280.jpg"},
-            {nom: "Faire du canoë", description: "Canoë sur la Garonne", adresse: "Base nautique de Sérignac-sur-Garonne", budget: "10-30 € par personne", image: "https://cdn.pixabay.com/photo/2016/06/03/13/59/boating-1439826_1280.jpg"},
-            {nom: "Faire une sortie en ski ou snowboard", description: "Ski ou snowboard en station", adresse: "Station de ski Pyrénées", budget: "40-70 € par personne", image: "https://cdn.pixabay.com/photo/2018/01/20/08/33/winter-3090020_1280.jpg"},
-            {nom: "Participer à une course d'orientation", description: "Course d'orientation en forêt", adresse: "Forêt de Bouconne", budget: "Gratuit ou 5-15 €", image: "https://cdn.pixabay.com/photo/2017/01/22/18/20/compass-2003079_1280.jpg"},
-            {nom: "Essayer la randonnée en raquettes", description: "Randonnée en raquettes en montagne", adresse: "Massif de l'Ariège", budget: "30-50 € par personne", image: "https://cdn.pixabay.com/photo/2018/03/19/11/08/snow-3242013_1280.jpg"},
-            {nom: "Faire du kitesurf ou du surf", description: "Cours de kitesurf ou de surf", adresse: "École de kitesurf Arcachon", budget: "40-80 €", image: "https://cdn.pixabay.com/photo/2016/07/13/00/37/kiters-1517664_1280.jpg"},
-            {nom: "Partir pour une journée de plongée", description: "Plongée ou snorkeling en mer", adresse: "Plongée Cap-Ferret", budget: "50-100 € par personne", image: "https://cdn.pixabay.com/photo/2016/03/27/19/32/diving-1289929_1280.jpg"}
-        ];
+        // Charger dynamiquement les activités depuis le fichier JSON
+        let activitesRestantes = [];
 
+        fetch('activites.json')
+            .then(response => response.json())
+            .then(data => {
+                activitesRestantes = data;
+            });
+
+        // Fonction pour choisir une activité et l'afficher
         function choisirActivite() {
-            const index = Math.floor(Math.random() * activites.length);
-            const activiteChoisie = activites[index];
+            if (activitesRestantes.length === 0) {
+                document.getElementById("resultat").innerText = "Toutes les activités ont été sélectionnées pour cette session.";
+                document.getElementById("description").innerText = "";
+                document.getElementById("adresse").innerText = "";
+                document.getElementById("budget").innerText = "";
+                return;
+            }
+
+            const index = Math.floor(Math.random() * activitesRestantes.length);
+            const activiteChoisie = activitesRestantes.splice(index, 1)[0]; // Retire l'activité de la liste après sélection
             document.getElementById("resultat").innerText = "Activité choisie : " + activiteChoisie.nom;
             document.getElementById("description").innerText = "Description : " + activiteChoisie.description;
             document.getElementById("adresse").innerText = "Adresse : " + activiteChoisie.adresse;
             document.getElementById("budget").innerText = "Budget : " + activiteChoisie.budget;
-            document.getElementById("image").src = activiteChoisie.image;
-            document.getElementById("image").alt = "Illustration de " + activiteChoisie.nom;
         }
     </script>
 </body>
